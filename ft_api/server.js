@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 8000;
 
 //connecting db
 import { conMongoDb } from "./config/mongodbConfig.js";
-conMongoDb;
+conMongoDb();
 
 // middleware
 

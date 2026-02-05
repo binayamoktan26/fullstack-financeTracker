@@ -9,9 +9,9 @@ POST  http://localhost:8000/api/v1/users
 Content-Type: application/json
  
  {
-    "name":"shikamaru",
-    "email":"shikamaru@gmail.com",
-    "password": "23"
+    "name":"itachi",
+    "email":"itachi@gmail.com",
+    "password":"tsukuyomi"
 
  }
 

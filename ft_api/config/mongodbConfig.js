@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const MONGO_URL = "mongodb://localhost:27017/finance_tracker";
+const MONGO_URL = "mongodb://127.0.0.1:27017/finance_tracker";
 export const conMongoDb = async () => {
   try {
     const conn = await mongoose.connect(MONGO_URL);
