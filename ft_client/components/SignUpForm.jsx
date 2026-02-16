@@ -1,24 +1,70 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { CustomInput } from "./CustomInput";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 export const SignUpForm = () => {
+  const [form, setForm] = useState({});
+  const fields = [
+    {
+      label: "Name",
+      placeholder: "",
+      require: true,
+      type: "text",
+      name: "name",
+    },
+    {
+      label: "Email",
+      placeholder: "hello@example.com",
+      require: true,
+      type: "email",
+      name: "email",
+    },
+    {
+      label: "Password",
+      placeholder: "********",
+      require: true,
+      type: "password",
+      name: "password",
+    },
+    {
+      label: "Confirm Password",
+      placeholder: "********",
+      require: true,
+      type: "password",
+      name: "confirmPassword",
+    },
+  ];
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    // console.log(name, value);
+    setForm({ ...form, [name]: value });
+  };
+  const handleOnSubmit = (e) => {
+    // console.log(e);
+    e.preventDefault();
+
+    // check confirm password
+    const { confirmPassword, ...rest } = form;
+    if (confirmPassword !== rest.password) {
+      return toast.error("Password and confirm password do not match");
+    }
+    console.log(form);
+  };
   return (
     <div className="border rounded p-4">
       <h3 className="mb-3">Sign Up Now !</h3>
       <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-        </Form.Group>
+        {fields.map((input) => (
+          <CustomInput key={input.name} {...input} onChange={handleOnChange} />
+        ))}
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
         <div className="d-grid">
           {" "}
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onClick={handleOnSubmit}>
             Submit
           </Button>
         </div>

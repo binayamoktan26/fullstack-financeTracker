@@ -6,8 +6,6 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Login from "./assets/pages/Login";
 import SignUp from "./assets/pages/SignUp";
 
-
-
 function App() {
   toast("my message");
   return (
@@ -16,7 +14,7 @@ function App() {
         <Route path="/" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
       </Routes>
-      {/* <ToastContainer /> */}
+      <ToastContainer />
     </div>
   );
 }
