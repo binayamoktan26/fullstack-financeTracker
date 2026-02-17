@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import { CustomInput } from "./CustomInput";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { postNewUser } from "../helper/axiosHelper";
 
 export const SignUpForm = () => {
   const [form, setForm] = useState({});
@@ -43,7 +44,7 @@ export const SignUpForm = () => {
     // console.log(name, value);
     setForm({ ...form, [name]: value });
   };
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     // console.log(e);
     e.preventDefault();
 
@@ -53,6 +54,8 @@ export const SignUpForm = () => {
       return toast.error("Password and confirm password do not match");
     }
     console.log(form);
+    const { status, message } = await postNewUser(rest);
+    toast[status](message);
   };
   return (
     <div className="border rounded p-4">

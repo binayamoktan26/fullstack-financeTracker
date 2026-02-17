@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { SignUpForm } from "../../../components/SignUpForm";
 import { FinancialTips } from "../../../components/FinancialTips";
+import { postNewUser } from "../../../helper/axiosHelper";
 const SignUp = () => {
   return (
     <Container className="p-5">
