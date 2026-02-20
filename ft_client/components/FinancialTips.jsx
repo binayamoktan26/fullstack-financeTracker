@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-
+import { GiReceiveMoney } from "react-icons/gi";
 const financeTips = [
   {
     tip: "Pay yourself first by saving a fixed percentage before spending.",
@@ -72,6 +72,13 @@ export const FinancialTips = () => {
       className="d-flex flex-column justify-content-center "
       style={{ height: "100%" }}
     >
+      <div className="mb-5">
+        <GiReceiveMoney
+          className="text-success"
+          style={{ fontSize: "10rem" }}
+        />
+        <div>Watch your money grow!</div>
+      </div>
       <h4> {tip}</h4>
 
       <div className="fw-bolder">
