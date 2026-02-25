@@ -5,8 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Routes, Route, Link } from "react-router-dom";
 import Login from "./assets/pages/Login";
 import SignUp from "./assets/pages/SignUp";
-import { DefaultLayout } from "../components/layout/DefaultLayOut";
-
+import { DefaultLayout } from "../components/layout/DefaultLayout";
 function App() {
   toast("my message");
   return (
