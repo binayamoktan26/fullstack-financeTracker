@@ -5,13 +5,14 @@
 
 GET http://localhost:8000
 ###post new user
-POST  http://localhost:8000/api/v1/users
+### login user
+POST  http://localhost:8000/api/v1/users/login
 Content-Type: application/json
  
  {
-    "name":"itachi",
-    "email":"itachi@gmail.com",
-    "password":"tsukuyomi"
+   
+    "email":"a@a",
+    "password":"1111"
 
  }
 
