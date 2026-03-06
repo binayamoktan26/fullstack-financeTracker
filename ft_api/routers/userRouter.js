@@ -46,7 +46,7 @@ router.post("/login", async (req, res, next) => {
         const isMatched = comparePassword(password, user.password);
         if (isMatched) {
           // 4. jwt and store the jwt in db then return the user OP with jwt token
-            //jwt token will be implemented in future
+     
           user.password = undefined;
           res.json({
             status: "success",
