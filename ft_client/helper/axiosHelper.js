@@ -1,6 +1,6 @@
 import axios from "axios";
 import { data } from "react-router-dom";
-const rootApiEP = " http://localhost:8000/api/v1";
+const rootApiEP = "http://localhost:8000/api/v1";
 
 const apiProcessor = async ({ method, url, data }) => {
   try {
@@ -24,6 +24,15 @@ export const postNewUser = (data) => {
   const obj = {
     method: "post",
     url: rootApiEP + "/users",
+    data,
+  };
+  return apiProcessor(obj);
+};
+//login user
+export const loginUser = (data) => {
+  const obj = {
+    method: "post",
+    url: rootApiEP + "/users/login",
     data,
   };
   return apiProcessor(obj);

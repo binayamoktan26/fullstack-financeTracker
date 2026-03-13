@@ -59,7 +59,7 @@ export const SignUpForm = () => {
   const handleOnSubmit = async (e) => {
     // console.log(e);
     e.preventDefault();
-
+   
     // check confirm password
     const { confirmPassword, ...rest } = form;
     if (confirmPassword !== rest.password) {

@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { CustomInput } from "./CustomInput";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { postNewUser } from "../helper/axiosHelper";
+import { loginUser } from "../helper/axiosHelper";
 import useForm from "../src/hooks/useForm";
 
 export const LogInForm = () => {
@@ -22,7 +22,7 @@ export const LogInForm = () => {
       require: true,
       type: "email",
       name: "email",
-    },    
+    },
     {
       label: "Password",
       placeholder: "********",
@@ -41,6 +41,9 @@ export const LogInForm = () => {
     // console.log(e);
     e.preventDefault();
     console.log(form);
+    const { status, message, user, accessJWT } = await loginUser(form);
+    toast[status](message);
+    console.log(status, message, user, accessJWT);
   };
   return (
     <div className="border rounded p-4">
