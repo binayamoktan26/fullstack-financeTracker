@@ -12,9 +12,10 @@ const apiProcessor = async ({ method, url, data }) => {
     console.log(data);
     return response.data;
   } catch (error) {
+    console.log(error);
     return {
       status: "error",
-      message: error.message,
+      message: error?.response?.data?.error || error.message,
     };
   }
 };
@@ -35,5 +36,6 @@ export const loginUser = (data) => {
     url: rootApiEP + "/users/login",
     data,
   };
+
   return apiProcessor(obj);
 };

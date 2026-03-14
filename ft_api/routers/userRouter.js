@@ -61,7 +61,7 @@ router.post("/login", async (req, res, next) => {
         }
       }
     }
-    res.json({
+    res.status(401).json({
       error: "invalid email or password",
     });
   } catch (error) {

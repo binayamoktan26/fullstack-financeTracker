@@ -5,6 +5,8 @@ import { ImExit } from "react-icons/im";
 import { HiOutlineLogin } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { IoCreate } from "react-icons/io5";
+import { RiDashboard2Fill } from "react-icons/ri";
+import { HiOutlineBanknotes } from "react-icons/hi2";
 
 export const Header = () => {
   return (
@@ -20,6 +22,12 @@ export const Header = () => {
             <Link className="nav-link" to="/">
               <HiOutlineLogin />
               Log In
+            </Link>
+            <Link className="nav-link" to="/dashboard">
+              <RiDashboard2Fill /> Dashboard
+            </Link>
+            <Link className="nav-link" to="/transaction">
+              <HiOutlineBanknotes /> Transction
             </Link>
             <Link className="nav-link" to="/">
               <ImExit /> Logout

@@ -41,9 +41,15 @@ export const LogInForm = () => {
     // console.log(e);
     e.preventDefault();
     console.log(form);
-    const { status, message, user, accessJWT } = await loginUser(form);
+    const pendingRes = loginUser(form);
+    toast.promise(pendingRes, {
+      pending: "Please wait ....",
+      error: "unable to  process your request",
+      success: "Login successful",
+    });
+    const { status, message, user, accessJWT } = await pendingRes;
     toast[status](message);
-    console.log(status, message, user, accessJWT);
+    console.log(user, accessJWT);
   };
   return (
     <div className="border rounded p-4">
