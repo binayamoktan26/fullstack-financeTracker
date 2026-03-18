@@ -8,6 +8,7 @@ import SignUp from "./assets/pages/SignUp";
 import Dashboard from "./assets/pages/Dashboard";
 import Transaction from "./assets/pages/Transaction";
 import { DefaultLayout } from "../components/layout/DefaultLayout";
+import { Auth } from "./auth/Auth";
 function App() {
   toast("my message");
   return (
@@ -16,8 +17,22 @@ function App() {
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<Login />} />
           <Route path="signup" element={<SignUp />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="transaction" element={<Transaction />} />
+          <Route
+            path="dashboard"
+            element={
+              <Auth>
+                <Dashboard />
+              </Auth>
+            }
+          />
+          <Route
+            path="transaction"
+            element={
+              <Auth>
+                <Transaction />
+              </Auth>
+            }
+          />
         </Route>
       </Routes>
       <ToastContainer />
