@@ -7,8 +7,14 @@ import { Link } from "react-router-dom";
 import { IoCreate } from "react-icons/io5";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { HiOutlineBanknotes } from "react-icons/hi2";
+import { Usercontext } from "../../src/main";
+import { useContext } from "react"; 
 
 export const Header = () => {
+  const useUser = ()=>useContext(Usercontext)
+  const data = useUser()
+  console.log(data)
+
   return (
     <Navbar expand="lg" variant="dark" className="bg-dark">
       <Container>
