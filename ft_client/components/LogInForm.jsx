@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { CustomInput } from "./CustomInput";
@@ -6,8 +6,16 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { loginUser } from "../helper/axiosHelper";
 import useForm from "../src/hooks/useForm";
+import { useUser } from "../src/context/UserContex";
+import { useNavigate } from "react-router-dom";
 
 export const LogInForm = () => {
+  const navigate = useNavigate()
+    const {user,setUser}=useUser() 
+  useEffect(()=>{
+    user?._id && navigate("/dashboard")
+  },[user?._id,navigate])  
+
   const initalState = {
     email: "",
     password: "",
@@ -43,14 +51,18 @@ export const LogInForm = () => {
     console.log(form);
     const pendingRes = loginUser(form);
     toast.promise(pendingRes, {
-      pending: "Please wait ....",
-      error: "unable to  process your request",
-      success: "Login successful",
+      pending: "Please wait ....", 
+    
     });
     const { status, message, user, accessJWT } = await pendingRes;
     toast[status](message);
     console.log(user, accessJWT);
+    setUser(user)
+    localStorage.setItem("accessJWT",accessJWT)
+    // localStorage.setItem("userinfo",JSON.stringify (user))
+
   };
+  console.log(user)
   return (
     <div className="border rounded p-4">
       <h3 className="mb-3">Sign In Now !</h3>

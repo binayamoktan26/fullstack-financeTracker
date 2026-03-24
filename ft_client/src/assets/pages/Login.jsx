@@ -6,7 +6,10 @@ import { LogInForm } from "../../../components/LogInForm";
 
 import { BsGraphDownArrow } from "react-icons/bs";
 import { BsGraphUpArrow } from "react-icons/bs";
+import { useUser } from "../../context/UserContex";
 const Login = () => {
+//   const data = useUser()
+// console.table(data)
   return (
     <Container className="p-5">
       <Row className=" bg-dark p-5 rounded">
