@@ -2,6 +2,7 @@ import express from "express";
 import { getUserByEmail, insertUser } from "../models/user/UserModel.js";
 import { hashPassword, comparePassword } from "../utils/bcryptjs.js";
 import { signjWT } from "../utils/jwt.js";
+import { auth } from "../middlewares/AuthMiddleware.js";
 
 const router = express.Router();
 // user signUp
@@ -70,6 +71,22 @@ router.post("/login", async (req, res, next) => {
     });
   }
 });
-// userProfile
-
+// userProfile from the accessJWT 
+router.get("/",auth ,(req,res,next)=>{
+ try {
+    //1. receive the token
+    //2. create auth middleware
+    // -valid if the token is validate
+    // - get user Email from the token
+    // - get user by email
+    return res.json({
+      status : "success",
+      message : " here is the user profile"
+    })
+ } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+ }
+})
 export default router;
