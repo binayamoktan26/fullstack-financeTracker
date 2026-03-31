@@ -3,7 +3,9 @@
 ### user
 ###getUser
 
-GET http://localhost:8000
+GET http://localhost:8000/api/v1/users
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6MTc3NDg5NDMwNywiZXhwIjoxNzc1NDk5MTA3fQ.ox_YmrEHRPxe73mnYz928b5OjtJMtNd_HTo0yJWpZyk
+
 ###post new user
 ### login user
 POST  http://localhost:8000/api/v1/users/login

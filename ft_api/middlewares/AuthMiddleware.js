@@ -1,13 +1,30 @@
-export const auth =  (req,res,next)=>{
+import { getSalt } from "bcryptjs";
+import { verifyJWT } from "../utils/jwt.js";
+import { getUserByEmail } from "../models/user/UserModel.js";
+
+export const auth = async (req,res,next)=>{
     try {
-        const isAuth = false;
-        //2. create auth middleware
-    // -valid if the token is validate
+  // -valid if the token is validate
+        const {authorization} =req.headers
+        if (!authorization) {
+      return res.status(401).json({ status: "error", message: "No token provided" });
+    }
+   
+
+        const result = verifyJWT(authorization)
+
     // - get user Email from the token
-    // - get user by email
-        isAuth ?next():res.status(403).json({
-            status: "Unauthorized"
-        })
+    if(result?.email){
+        const user = await getUserByEmail(result.email)
+        if(user?.id){
+            //user Authorized
+            //store user in the req,header
+            req.userInfo = user 
+            return next()
+        }
+        return res.status(401).json({ status: "error", message: "Unauthorized user" });
+    }
+   
     } catch (error) {
          res.status(500).json({
       error: error.message,
