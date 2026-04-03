@@ -53,7 +53,7 @@ export const LogInForm = () => {
     toast.promise(pendingRes, {
       pending: "Please wait ....", 
     
-    });
+    }); 
     const { status, message, user, accessJWT } = await pendingRes;
     toast[status](message);
     console.log(user, accessJWT);

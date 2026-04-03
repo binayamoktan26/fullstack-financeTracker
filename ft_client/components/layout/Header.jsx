@@ -13,7 +13,7 @@ import { useContext } from "react";
 export const Header = () => {
  
   // const data = useUser()
-  const {setUser}= useUser()
+  const {user,setUser}= useUser()
 const handleOnLogOut = ()=>{
 // click on logout then delete accessJWT 
 localStorage.removeItem("accessJWT")
@@ -28,14 +28,10 @@ setUser({})
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Link className="nav-link" to="/signup">
-              <IoCreate /> Sign Up
-            </Link>
-            <Link className="nav-link" to="/">
-              <HiOutlineLogin />
-              Log In
-            </Link>
-            <Link className="nav-link" to="/dashboard">
+            {
+              user._id? (
+                <>
+                 <Link className="nav-link" to="/dashboard">
               <RiDashboard2Fill /> Dashboard
             </Link>
             <Link  className="nav-link" to="/transaction">
@@ -44,6 +40,21 @@ setUser({})
             <Link onClick={handleOnLogOut} className="nav-link" to="/">
               <ImExit /> Logout
             </Link>
+                </>
+              ) :(
+                <>
+                     <Link className="nav-link" to="/signup">
+              <IoCreate /> Sign Up
+            </Link>
+            <Link className="nav-link" to="/">
+              <HiOutlineLogin />
+              Log In
+            </Link>
+           
+                </>
+              )
+            }
+       
           </Nav>
         </Navbar.Collapse>
       </Container>

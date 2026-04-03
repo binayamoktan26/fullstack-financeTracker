@@ -9,8 +9,21 @@ import Dashboard from "./assets/pages/Dashboard";
 import Transaction from "./assets/pages/Transaction";
 import { DefaultLayout } from "../components/layout/DefaultLayout";
 import { Auth } from "./auth/Auth";
+import { useEffect } from "react";
+import { autoLogIn } from "../utils/users";
+import { useUser } from "./context/UserContex";
 function App() {
-  toast("my message");
+  const {user,setUser} = useUser()
+  useEffect(()=>{
+   !user?._id && updateUser()
+  },[user?._id])
+
+
+  const updateUser=async() =>{
+    const user =await autoLogIn()
+    setUser(user)
+  }
+  // toast("my message");
   return (
     <div className="wrapper">
       <Routes>

@@ -1,13 +1,16 @@
 import axios from "axios";
 import { data } from "react-router-dom";
 const rootApiEP = "http://localhost:8000/api/v1";
-
-const apiProcessor = async ({ method, url, data }) => {
+const getAccessJWT=()=>{
+  return localStorage.getItem("AccessJWT")
+}
+const apiProcessor = async ({ method, url, data ,headers}) => {
   try {
     const response = await axios({
       method,
       url,
       data,
+      headers,  
     });
     console.log(data);
     return response.data;
@@ -39,3 +42,17 @@ export const loginUser = (data) => {
 
   return apiProcessor(obj);
 };
+//getUser  Profile 
+export const getUser = () => {
+  const obj = {
+    method: "get",
+    url: rootApiEP + "/users",
+    headers:{
+      Authorization:getAccessJWT()
+
+    },
+  };
+
+  return apiProcessor(obj);
+};
+ 
