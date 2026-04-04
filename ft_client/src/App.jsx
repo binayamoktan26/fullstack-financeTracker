@@ -23,6 +23,7 @@ function App() {
     const user =await autoLogIn()
     setUser(user)
   }
+  console.log(user)
   // toast("my message");
   return (
     <div className="wrapper">
