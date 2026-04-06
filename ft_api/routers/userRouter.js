@@ -74,8 +74,9 @@ router.post("/login", async (req, res, next) => {
 // userProfile from the accessJWT 
 router.get("/",auth ,(req,res,next)=>{
  try {
-    user.password=undefined
+   
     const user = req.userInfo;
+     user.password=undefined
     return res.json({
       status : "success",
       message : " here is the user profile",

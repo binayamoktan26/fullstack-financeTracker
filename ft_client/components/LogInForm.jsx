@@ -62,7 +62,7 @@ export const LogInForm = () => {
     // localStorage.setItem("userinfo",JSON.stringify (user))
 
   };
-  console.log(user)
+
   return (
     <div className="border rounded p-4">
       <h3 className="mb-3">Sign In Now !</h3>

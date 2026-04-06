@@ -19,11 +19,12 @@ function App() {
   },[user?._id])
 
 
+
   const updateUser=async() =>{
     const user =await autoLogIn()
-    setUser(user)
+   setUser(user)
   }
-  console.log(user)
+
   // toast("my message");
   return (
     <div className="wrapper">

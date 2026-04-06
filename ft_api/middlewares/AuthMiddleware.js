@@ -9,14 +9,12 @@ export const auth = async (req,res,next)=>{
         if (!authorization) {
       return res.status(401).json({ status: "error", message: "No token provided" });
     }
-   
-
-        const result = verifyJWT(authorization)
+     const result = verifyJWT(authorization)
 
     // - get user Email from the token
     if(result?.email){
         const user = await getUserByEmail(result.email)
-        if(user?.id){
+        if(user?._id){
             //user Authorized
             //store user in the req,header
             req.userInfo = user 
@@ -26,7 +24,7 @@ export const auth = async (req,res,next)=>{
     }
    
     } catch (error) {
-         res.status(500).json({
+       return  res.status(500).json({
       error: error.message,
     })
         

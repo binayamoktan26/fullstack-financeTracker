@@ -1,9 +1,13 @@
 import axios from "axios";
 import { data } from "react-router-dom";
 const rootApiEP = "http://localhost:8000/api/v1";
+
+
 const getAccessJWT=()=>{
-  return localStorage.getItem("AccessJWT")
+  return localStorage.getItem("accessJWT")
+  
 }
+console.log(getAccessJWT())
 const apiProcessor = async ({ method, url, data ,headers}) => {
   try {
     const response = await axios({
@@ -12,10 +16,10 @@ const apiProcessor = async ({ method, url, data ,headers}) => {
       data,
       headers,  
     });
-    console.log(data);
+
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(error); 
     return {
       status: "error",
       message: error?.response?.data?.error || error.message,
@@ -48,7 +52,8 @@ export const getUser = () => {
     method: "get",
     url: rootApiEP + "/users",
     headers:{
-      Authorization:getAccessJWT()
+    Authorization: getAccessJWT(),
+    // Authorization: "Bearer " + getAccessJWT()
 
     },
   };
