@@ -7,14 +7,20 @@ import { toast } from "react-toastify";
 import { loginUser } from "../helper/axiosHelper";
 import useForm from "../src/hooks/useForm";
 import { useUser } from "../src/context/UserContex";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const LogInForm = () => {
+
+
+  const location = useLocation()
+  const goTo = location?.state?.from?.pathname || "/dashboard"
+  
+  console.log(location)
   const navigate = useNavigate()
     const {user,setUser}=useUser() 
-  useEffect(()=>{
-    user?._id && navigate("/dashboard")
-  },[user?._id,navigate])  
+  useEffect(()=>{   
+    user?._id && navigate(goTo)
+  },[user?._id,navigate,goTo])  
 
   const initalState = {
     email: "",

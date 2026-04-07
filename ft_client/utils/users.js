@@ -2,7 +2,7 @@ import { getUser } from "../helper/axiosHelper"
 
 export const autoLogIn =async()=>{
 
-    const  accessJWT = localStorage.getItem("accessJWT"); 
+const  accessJWT = localStorage.getItem("accessJWT"); 
 
 
 
