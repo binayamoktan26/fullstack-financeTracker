@@ -7,6 +7,7 @@ const Transaction = () => {
   return (
     <Container className="p-5">
       <Row className=" bg-dark p-5 rounded">
+        {/* starting transaction  */}
         <Col md={6}>Todo transaction</Col>
       </Row>
     </Container>
