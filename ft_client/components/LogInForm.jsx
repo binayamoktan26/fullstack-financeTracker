@@ -13,9 +13,9 @@ export const LogInForm = () => {
 
 
   const location = useLocation()
-  const goTo = location?.state?.from?.pathname || "/dashboard"
-  
   console.log(location)
+  const goTo = location?.state?.from?.pathname || "/dashboard"
+
   const navigate = useNavigate()
     const {user,setUser}=useUser() 
   useEffect(()=>{   
