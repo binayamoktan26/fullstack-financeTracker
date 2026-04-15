@@ -6,22 +6,40 @@ const initalState = {
 tdate: "",};
 
 export const TransactionForm = () => {
-
+  const [form ,setForm] = useState(initalState);
   return (
   const fields = [
     {
-      label: "Email",
-      placeholder: "hello@example.com",
+      label: "Type",
+      placeholder: "",
       require: true,
-      type: "email",
-      name: "email",
+      type: "text",
+      name: "name",
+      
     },
     {
-      label: "Password",
-      placeholder: "********",
+      label: "Title",
+      placeholder: "Salary",
       require: true,
-      type: "password",
-      name: "password",
+      type: "text",
+      name: "text",
+      value : form.title,
+    },
+     {
+      label: "Amount",
+      placeholder: "1000",
+      require: true,
+      type: "number",
+      name: "amount",
+      value : form.amount,
+    },
+     {
+      label: "Transaction Date",
+      placeholder: "2023-01-01",
+      require: true,
+      type: "date",
+      name: "tdate",
+      value : form.date,
     },
   ];
   )
