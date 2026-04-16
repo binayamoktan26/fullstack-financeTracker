@@ -1,4 +1,11 @@
 import React from 'react'
+import Form from "react-bootstrap/Form";
+import { CustomInput } from './CustomInput';
+import useForm from '../src/hooks/useForm';
+import Button from 'react-bootstrap/esm/Button';
+
+
+
 const initalState = {
   type: "",
   title: "",
@@ -6,23 +13,23 @@ const initalState = {
 tdate: "",};
 
 export const TransactionForm = () => {
-  const [form ,setForm] = useState(initalState);
-  return (
-  const fields = [
-    {
-      label: "Type",
-      placeholder: "",
-      require: true,
-      type: "text",
-      name: "name",
-      
-    },
+  
+const { form, setForm, handleOnChange } = useForm(initalState);
+
+  const handleOnSubmit =(e)=>{
+    e.preventDefault();
+    console.table(form)
+  }
+
+
+   const fields = [
+    
     {
       label: "Title",
       placeholder: "Salary",
       require: true,
       type: "text",
-      name: "text",
+      name: "title",
       value : form.title,
     },
      {
@@ -42,5 +49,32 @@ export const TransactionForm = () => {
       value : form.date,
     },
   ];
+  return (
+    <div className="border rounded p-4">
+      <h3 className="mb-3">Add New Transaction</h3>
+      <form onSubmit={handleOnSubmit}>     
+     <Form.Group className="mb-3">
+      <Form.Label>Transaction Type</Form.Label>
+      
+      <Form.Select name="type"  onChange={handleOnChange}>
+        <option value="">--select--</option>
+        <option value="income">Income</option>
+        <option value="expenses">Expenses</option>
+      </Form.Select>
+      </Form.Group>
+
+        {fields.map((input) => (
+          <CustomInput key={input.name} {...input} onChange={handleOnChange} />
+        ))}
+
+        <div className="d-grid">
+          {" "}
+          <Button variant="primary" type="submit" onClick={handleOnSubmit}>
+            Submit
+          </Button>
+        </div>
+      </form>
+    </div>
+ 
   )
 }
