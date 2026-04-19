@@ -19,4 +19,11 @@ Content-Type: application/json
  }
 
 
-###transaction
+###transaction all private router
+
+
+
+### post new transaction 
+POST  http://localhost:8000/api/v1/transaction 
+Content-Type: application/json
+
