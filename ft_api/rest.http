@@ -24,6 +24,6 @@ Content-Type: application/json
 
 
 ### post new transaction 
-POST  http://localhost:8000/api/v1/transaction 
-Content-Type: application/json
+
+POST  http://localhost:8000/api/v1/transactions
 

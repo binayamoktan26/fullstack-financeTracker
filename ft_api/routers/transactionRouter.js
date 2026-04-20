@@ -1,10 +1,10 @@
-import express from "express"
-const router = express.router()
+import express from "express";
+const router = express.Router()
 
 
 // insert transaction 
 
-router.post("/", (req,res)=>{
+router.post("/",(req,res)=>{
     try {
         console.log(req.body)
         res.json({
@@ -22,4 +22,4 @@ router.post("/", (req,res)=>{
 
 
 
-export default router
+export default router;

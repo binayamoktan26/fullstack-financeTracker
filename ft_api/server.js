@@ -12,11 +12,14 @@ app.use(cors());
 app.use(express.json());
 // api endpoints
 import userRouter from "./routers/userRouter.js";
-import transcationRouter from "./routers/transactionRouter.js";
+import transactionRouter from "./routers/transactionRouter.js";
+
 app.use("/api/v1/users", userRouter);
-app.use("/api/v1/transaction", transcationRouter);
+app.use("/api/v1/transactions",transactionRouter)
 
-
+app.get("/test", (req, res) => {
+    res.send("Server is working!");
+});
 app.get("/", (req, res) => {
   res.json({
     message: "hello world",
