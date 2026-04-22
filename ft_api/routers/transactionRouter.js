@@ -1,15 +1,19 @@
 import express from "express";
-const router = express.Router()
+import { auth } from "../middlewares/AuthMiddleware.js";
 
+const router = express.Router();
 
-// insert transaction 
+// post transaction 
 
-router.post("/",(req,res)=>{
+router.post ("/", (req,res)=>{
     try {
+        const {_id} = req.userInfo
+        req.body.userId = _id
         console.log(req.body)
         res.json({
             status : "success",
-            message: "todo inserted successfully",
+            message : "transaction created successfully"  
+
         })
         
     } catch (error) {
@@ -22,4 +26,8 @@ router.post("/",(req,res)=>{
 
 
 
+
+
+
 export default router;
+

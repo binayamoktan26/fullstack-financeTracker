@@ -26,4 +26,14 @@ Content-Type: application/json
 ### post new transaction 
 
 POST  http://localhost:8000/api/v1/transactions
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6MTc3Njc5NTY2OCwiZXhwIjoxNzc3NDAwNDY4fQ.15Zi52r0vSf2GSKeFaWL9VkH4AZtsr4dJwHRzhHeEa4
 
+
+{
+   "type":"income",
+   "title":"salary",
+   "amount":"5000", 
+   "tdate": "01-01-2024"
+
+}
