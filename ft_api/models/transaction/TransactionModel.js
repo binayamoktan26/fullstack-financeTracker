@@ -8,7 +8,6 @@ export const insertTransaction=(obj)=>{
 
 // r read 
 
-git 
 // U update  
 
 

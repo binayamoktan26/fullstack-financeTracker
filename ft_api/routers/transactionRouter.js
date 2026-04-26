@@ -13,6 +13,7 @@ router.post ("/", async  (req,res)=>{
         // console.log(req.body)
         const result = await insertTransaction(req.body)
         // console.log(result)
+        console.log(result)
         result?._id? res.json({
             status : "success",
             message : " New transaction created successfully" 
