@@ -27,8 +27,7 @@ Content-Type: application/json
 
 POST  http://localhost:8000/api/v1/transactions
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6MTc3Njc5NTY2OCwiZXhwIjoxNzc3NDAwNDY4fQ.15Zi52r0vSf2GSKeFaWL9VkH4AZtsr4dJwHRzhHeEa4
-
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6MTc3NzY1Mzc0NywiZXhwIjoxNzc4MjU4NTQ3fQ.s3iHg8AQhxQpGSCrMDVqLQEUYMr6PdNRFsUJm6bnJ74
 
 {
    "type":"income",
