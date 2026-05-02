@@ -3,6 +3,8 @@ import Form from "react-bootstrap/Form";
 import { CustomInput } from './CustomInput';
 import useForm from '../src/hooks/useForm';
 import Button from 'react-bootstrap/esm/Button';
+import { postNewTransaction } from '../helper/axiosHelper';
+import { toast } from 'react-toastify';
 
 
 
@@ -16,9 +18,16 @@ export const TransactionForm = () => {
   
 const { form, setForm, handleOnChange } = useForm(initalState);
 
-  const handleOnSubmit =(e)=>{
+  const handleOnSubmit =async(e)=>{
     e.preventDefault();
-    console.table(form)
+    // console.table(form)
+    const pending =postNewTransaction(form)
+    toast.promise(pending , {
+      pending :"Please wait ....."
+    })
+const {status,message}=await pending;
+toast[status](message)
+status == "success" && setForm(initalState)
   }
 
 
