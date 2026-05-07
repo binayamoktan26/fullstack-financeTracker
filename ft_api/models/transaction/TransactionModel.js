@@ -8,6 +8,15 @@ export const insertTransaction=(obj)=>{
 
 // r read 
 
+
+export const getTransaction =(userId)=>{
+   if(!userId){
+      throw new Error("userId is required")
+   }
+   return TransactionSchema.find({userId})  
+   // {userId: userId}  Key pani 'userId', value pani variable 'userId'
+}
+
 // U update  
 
 

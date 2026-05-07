@@ -36,3 +36,8 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6M
    "tdate": "01-01-2024"
 
 }
+
+### get all transactions 
+
+GET  http://localhost:8000/api/v1/transactions
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6MTc3ODE3NjUyMSwiZXhwIjoxNzc4NzgxMzIxfQ.KGgOOc6ybIXVRObRyrZ2nAaIsqlRoyeSPRDpzM_U6pM

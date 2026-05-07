@@ -1,6 +1,6 @@
 import express from "express";
 import { auth } from "../middlewares/AuthMiddleware.js";
-import { insertTransaction } from "../models/transaction/TransactionModel.js";
+import { getTransaction, insertTransaction } from "../models/transaction/TransactionModel.js";
 
 const router = express.Router();
 
@@ -23,13 +23,35 @@ router.post ("/", async  (req,res)=>{
 })
     } catch (error) {
         console.log(error)
+        res.json({
+            status: "error",
+            message:"error.message"
+        })
     }
 })
 
  
+// return all the transaction for the specfic user 
 
+router.get("/", async(req,res)=>{
+    try {
+    const {_id} = req.userInfo
+    const transaction = await getTransaction(_id) || []
 
-
+    res.json({
+        status: "success",
+        message: "transaction fetched successfully",
+        transaction
+    })
+    
+} catch (error) {
+    console.log(error)
+        res.json({
+            status: "error",
+            message:"error.message"
+        })
+}
+})
 
 
 

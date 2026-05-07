@@ -2,7 +2,7 @@ import { getSalt } from "bcryptjs";
 import { verifyJWT } from "../utils/jwt.js";
 import { getUserByEmail } from "../models/user/UserModel.js";
 
-export const auth = async (req,res,next)=>{
+export const  auth = async (req,res,next)=>{
     try {
   // -valid if the token is validatecd 
         const {authorization} =req.headers
