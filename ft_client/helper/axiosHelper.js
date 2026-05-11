@@ -76,3 +76,19 @@ export const getUser = () => {
   };
   return apiProcessor(obj); 
 };
+
+
+// fetch transaction for specific user
+ export const fetchTransaction= () => {
+  const obj = {
+    method: "get",
+    url: rootApiEP + "/transactions",
+    
+      headers:{
+    Authorization: getAccessJWT(),
+    // Authorization: "Bearer " + getAccessJWT()
+
+    }
+  };
+  return apiProcessor(obj); 
+};
