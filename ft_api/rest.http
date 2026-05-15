@@ -4,8 +4,7 @@
 ###getUser
 
 GET http://localhost:8000/api/v1/users
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6MTc3NDg5NDMwNywiZXhwIjoxNzc1NDk5MTA3fQ.ox_YmrEHRPxe73mnYz928b5OjtJMtNd_HTo0yJWpZyk
-
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6MTc3ODg2NTExMywiZXhwIjoxNzc5NDY5OTEzfQ.3C8lG-FKB282IjRNtph9gJgCh63bfcELda4CleACV68
 ###post new user
 ### login user
 POST  http://localhost:8000/api/v1/users/login
@@ -27,7 +26,7 @@ Content-Type: application/json
 
 POST  http://localhost:8000/api/v1/transactions
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6MTc3NzY1Mzc0NywiZXhwIjoxNzc4MjU4NTQ3fQ.s3iHg8AQhxQpGSCrMDVqLQEUYMr6PdNRFsUJm6bnJ74
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6MTc3ODg2NTExMywiZXhwIjoxNzc5NDY5OTEzfQ.3C8lG-FKB282IjRNtph9gJgCh63bfcELda4CleACV68
 
 {
    "type":"income",
