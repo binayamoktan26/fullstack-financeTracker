@@ -1,6 +1,8 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table';
 import { useUser } from '../src/context/UserContex';
+import form from "react-bootstrap/Form";
+import { BsClipboardPlus } from "react-icons/bs";
 export const TransactionTable = () => {
   const{transaction}  =useUser()
   console.log(transaction)
@@ -8,8 +10,17 @@ export const TransactionTable = () => {
   return t.type === "income" ? acc + t.amount : acc - t.amount;
  }, 0);
 
-  return (
-    <Table striped bordered hover>
+  return (<>
+  <div className='d-flex justify-content-between pt-2 mb-2'>
+    <div>{transaction.length} Transaction found ! </div>
+    <div>
+      <form.Control type="text"></form.Control>
+    </div>
+    <div>
+      <button><BsClipboardPlus /> Add New Transactions</button>
+    </div>
+  </div>
+    <Table striped  hover>
       <thead>
         <tr>
           <th>#</th>
@@ -28,14 +39,14 @@ export const TransactionTable = () => {
           <td>{t.title}</td>
           {
             t.type === "expenses" && <>
-             <td>{t.amount}</td>
-          <td>{t.cr}</td>
+             <td className='dr'>{t.amount}</td>
+          <td></td>
             </>
           }
            {
             t.type === "income" && <>
              <td></td>
-          <td>{t.amount}</td>
+          <td className='cr'>{t.amount}</td>
             </>
           }
          
@@ -50,6 +61,7 @@ export const TransactionTable = () => {
         </tr>
       </tbody>
     </Table>
+    </>
   );
 }
   

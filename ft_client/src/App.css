@@ -6,3 +6,14 @@
 .main {
   min-height: calc(100vh - 150px);
 }
+
+.table ,tr , td,th{
+  background: transparent !important;
+  color: white !important;
+}
+.dr {
+  color: red !important;
+}
+.cr{
+  color: rgb(234, 234, 70) !important;
+}
