@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/esm/Button';
 import { postNewTransaction } from '../helper/axiosHelper';
 import { toast } from 'react-toastify';
 
+import { useUser } from '../src/context/UserContex';
 
 
 const initalState = {
@@ -17,7 +18,7 @@ tdate: "",};
 export const TransactionForm = () => {
   
 const { form, setForm, handleOnChange } = useForm(initalState);
-
+const {getTransaction} = useUser()
   const handleOnSubmit =async(e)=>{
     e.preventDefault();
     // console.table(form)
@@ -25,9 +26,12 @@ const { form, setForm, handleOnChange } = useForm(initalState);
     toast.promise(pending , {
       pending :"Please wait ....."
     })
+  }
 const {status,message}=await pending;
 toast[status](message)
-status == "success" && setForm(initalState)
+if (status == "success"){
+  setForm(initalState)
+  getTransaction()
   }
 
 
