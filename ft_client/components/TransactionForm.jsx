@@ -26,13 +26,14 @@ const {getTransaction} = useUser()
     toast.promise(pending , {
       pending :"Please wait ....."
     })
-  }
-const {status,message}=await pending;
+    const {status,message}=await pending;
 toast[status](message)
 if (status == "success"){
   setForm(initalState)
   getTransaction()
   }
+  }
+
 
 
    const fields = [
