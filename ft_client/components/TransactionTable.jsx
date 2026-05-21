@@ -1,20 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
 import { useUser } from '../src/context/UserContex';
 import form from "react-bootstrap/Form";
 import { BsClipboardPlus } from "react-icons/bs";
+import { useState } from 'react';
 export const TransactionTable = () => {
+  const [displayTransaction, setDisplayTransaction]= useState([])
+
   const{transaction}  =useUser()
-  console.log(transaction)
- const balance = transaction.reduce((acc, t) => {
+
+ useEffect(()=>{
+  setDisplayTransaction(transaction)  
+ }, [transaction])
+ const balance = displayTransaction.reduce((acc, t) => {
   return t.type === "income" ? acc + t.amount : acc - t.amount;
  }, 0);
 
+ const handleOnSearch =(e)=>{
+  const {value} = e.target
+  console.log(value)
+  const filteredAvg = transaction.filter(({title})=>{
+     return  title.toLowerCase().includes(value.toLowerCase())
+  }) 
+  console.log(filteredAvg)
+  setDisplayTransaction(filteredAvg)
+ }
   return (<>
   <div className='d-flex justify-content-between pt-2 mb-2'>
-    <div>{transaction.length} Transaction found ! </div>
+    <div>{displayTransaction.length} Transaction found ! </div>
     <div>
-      <form.Control type="text"></form.Control>
+      <form.Control type="text" placeholder="Search transactions..." onChange={handleOnSearch}></form.Control>
     </div>
     <div>
       <button><BsClipboardPlus /> Add New Transactions</button>
@@ -31,7 +46,7 @@ export const TransactionTable = () => {
         </tr>
       </thead>
       <tbody>
-       {transaction.length >0 && transaction.map((t , i)=>(
+       {displayTransaction.length >0 && displayTransaction.map((t , i)=>(
   <tr key={t._id}>
           <td>{i+1}</td>
           <td>{t.createdAt.slice(0,10)
