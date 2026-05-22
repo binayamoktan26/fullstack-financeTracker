@@ -4,6 +4,7 @@ import { useUser } from '../src/context/UserContex';
 import form from "react-bootstrap/Form";
 import { BsClipboardPlus } from "react-icons/bs";
 import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
 export const TransactionTable = () => {
   const [displayTransaction, setDisplayTransaction]= useState([])
 
@@ -20,7 +21,7 @@ export const TransactionTable = () => {
   const {value} = e.target
   console.log(value)
   const filteredAvg = transaction.filter(({title})=>{
-     return  title.toLowerCase().includes(value.toLowerCase())
+ return  title.toLowerCase().includes(value.toLowerCase())
   }) 
   console.log(filteredAvg)
   setDisplayTransaction(filteredAvg)
@@ -32,13 +33,14 @@ export const TransactionTable = () => {
       <form.Control type="text" placeholder="Search transactions..." onChange={handleOnSearch}></form.Control>
     </div>
     <div>
-      <button><BsClipboardPlus /> Add New Transactions</button>
+      <Button variant="primary">  <BsClipboardPlus /> Add new Transaction</Button>
     </div>
+  
   </div>
     <Table striped  hover>
       <thead>
         <tr>
-          <th>#</th>
+          <th>S.N</th>
           <th>Date</th>
           <th>Title</th>
           <th>Dr.</th>
