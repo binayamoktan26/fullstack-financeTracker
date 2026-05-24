@@ -18,7 +18,7 @@ tdate: "",};
 export const TransactionForm = () => {
   
 const { form, setForm, handleOnChange } = useForm(initalState);
-const {getTransaction} = useUser()
+const {getTransaction,toggleModal} = useUser()
   const handleOnSubmit =async(e)=>{
     e.preventDefault();
     // console.table(form)
@@ -31,6 +31,8 @@ toast[status](message)
 if (status == "success"){
   setForm(initalState)
   getTransaction()
+  // after getting successfull message close the modal 
+  toggleModal(false)
   }
   }
 

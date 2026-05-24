@@ -1,40 +1,30 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useUser } from '../src/context/UserContex'; 
 
-export const  CustomModel=() =>{
-  const [show, setShow] = useState(false);
+export const  CustomModel=({children}) =>{
+const {toggleModal , show } =useUser()
+//   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+//   const toggleModal = (value) => setShow(value);
+//   const handleShow = () => setShow(true);
   return (
-    <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
-      </Button>
-
       <Modal
         show={show}
-        onHide={handleClose}
+        onHide={()=>toggleModal(false)}
         backdrop="static"
         keyboard={false}
+        centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          I will not close if you click outside me. Do not even try to press
-          escape key.
+        {children}
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary">Understood</Button>
-        </Modal.Footer>
+        
       </Modal>
-    </>
   );
 }
 

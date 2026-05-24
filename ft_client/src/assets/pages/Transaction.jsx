@@ -6,6 +6,7 @@ import { TransactionForm } from "../../../components/TransactionForm";
 import { TransactionTable } from "../../../components/TransactionTable";
 import { useUser } from "../../context/UserContex";
 import { useEffect } from "react";
+import { CustomModel } from "../../../components/CustomModel";
 
 const Transaction = () => {
   const {getTransaction} = useUser()
@@ -18,7 +19,9 @@ const Transaction = () => {
         {/* starting transaction  */}
       
         <Col >  
+        <CustomModel >
         <TransactionForm />
+        </CustomModel >
         <hr />
 
         <TransactionTable />

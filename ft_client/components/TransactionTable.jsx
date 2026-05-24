@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 export const TransactionTable = () => {
   const [displayTransaction, setDisplayTransaction]= useState([])
 
-  const{transaction}  =useUser()
+  const{transaction, toggleModal}  =useUser()
 
  useEffect(()=>{
   setDisplayTransaction(transaction)  
@@ -33,7 +33,9 @@ export const TransactionTable = () => {
       <form.Control type="text" placeholder="Search transactions..." onChange={handleOnSearch}></form.Control>
     </div>
     <div>
-      <Button variant="primary">  <BsClipboardPlus /> Add new Transaction</Button>
+      <Button variant="primary" onClick={()=>toggleModal(true)}>
+        <BsClipboardPlus /> Add new Transaction
+      </Button>
     </div>
   
   </div>
