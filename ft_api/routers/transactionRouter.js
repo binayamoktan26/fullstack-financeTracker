@@ -54,6 +54,33 @@ router.get("/", async(req,res)=>{
 })
 
 
+// delete transaction 
+
+router.delete("/",async (req,res)=>{
+    try {
+        // receive the ids [] and _id of user 
+const {ids} = req.body
+const {_id} = req.userInfo
+console.log(ids , _id)
+        //perform deletion query
+        const result = await deleteTransaction(_id, ids)  
+
+
+        //
+res.json({
+            status: "success",
+            message:result.deleteCount + "Transaction deleted successfully"
+        })
+        
+    } catch (error) {
+    console.log(error)
+        res.json({
+            status: "error",
+            message:"error.message"
+        })
+}
+})
+
 
 
 export default router;

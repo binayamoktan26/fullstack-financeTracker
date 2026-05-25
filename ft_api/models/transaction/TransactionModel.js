@@ -22,4 +22,7 @@ export const getTransaction =(userId)=>{
 
 
 
-// D delete 
+// D delete transaction 
+export const deleteTransaction =(userId , idsToDelete)=>{
+ return TransactionSchema.deleteMany({userId, _id: {$in : idsToDelete}})
+}
