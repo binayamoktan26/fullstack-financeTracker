@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
 import { useUser } from '../src/context/UserContex';
-import form from "react-bootstrap/Form";
+import Form from 'react-bootstrap/Form';
 import { BsClipboardPlus } from "react-icons/bs";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
@@ -9,6 +9,7 @@ export const TransactionTable = () => {
   const [displayTransaction, setDisplayTransaction]= useState([])
 
   const{transaction, toggleModal}  =useUser()
+  const [idsToDelete , setIdsToDelete]= useState([])
 
  useEffect(()=>{
   setDisplayTransaction(transaction)  
@@ -26,11 +27,30 @@ export const TransactionTable = () => {
   console.log(filteredAvg)
   setDisplayTransaction(filteredAvg)
  }
-  return (<>
-  <div className='d-flex justify-content-between pt-2 mb-2'>
+ const handleOnSelect =(e)=>{
+  const {checked , value} = e.target
+  console.log(checked , value)
+  if(value === "all"){
+    console.log("all selected")
+
+  }
+  if(checked){
+    setIdsToDelete([...idsToDelete , value])
+  }else {
+    setIdsToDelete( idsToDelete.filter((id)=>  id!==value))
+  }
+   
+  }
+  console.log(idsToDelete)
+  
+ };
+
+  return  
+   (<>
+   <div className='d-flex justify-content-between pt-2 mb-2'>
     <div>{displayTransaction.length} Transaction found ! </div>
     <div>
-      <form.Control type="text" placeholder="Search transactions..." onChange={handleOnSearch}></form.Control>
+      <Form.Control type="text" placeholder="Search transactions..." onChange={handleOnSearch}></Form.Control>
     </div>
     <div>
       <Button variant="primary" onClick={()=>toggleModal(true)}>
@@ -39,6 +59,7 @@ export const TransactionTable = () => {
     </div>
   
   </div>
+  <div><Form.Check label="Select All" onChange={handleOnSelect} value="all"/></div>
     <Table striped  hover>
       <thead>
         <tr>
@@ -51,10 +72,12 @@ export const TransactionTable = () => {
       </thead>
       <tbody>
        {displayTransaction.length >0 && displayTransaction.map((t , i)=>(
-  <tr key={t._id}>
-          <td>{i+1}</td>
-          <td>{t.createdAt.slice(0,10)
-}</td>
+           <tr key={t._id}>    
+          <td>{i+1}
+            
+          </td>
+          <td><Form.Check label= {t.createdAt.slice(0,10)
+                  }value ={t._id} onChange={handleOnSelect}/></td>
           <td>{t.title}</td>
           {
             t.type === "expenses" && <>
@@ -81,6 +104,6 @@ export const TransactionTable = () => {
       </tbody>
     </Table>
     </>
-  );
-}
+)
+
   
