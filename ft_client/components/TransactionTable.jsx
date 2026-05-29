@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { BsClipboardPlus } from "react-icons/bs";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import { deleteTransaction } from '../helper/axiosHelper.js';
 export const TransactionTable = () => {
   const [displayTransaction, setDisplayTransaction]= useState([])
 
@@ -14,6 +15,9 @@ export const TransactionTable = () => {
  useEffect(()=>{
   setDisplayTransaction(transaction)  
  }, [transaction])
+useEffect(() => {
+  console.log("Selected IDs:", idsToDelete)
+}, [idsToDelete])
  const balance = displayTransaction.reduce((acc, t) => {
   return t.type === "income" ? acc + t.amount : acc - t.amount;
  }, 0);
@@ -27,26 +31,35 @@ export const TransactionTable = () => {
   console.log(filteredAvg)
   setDisplayTransaction(filteredAvg)
  }
- const handleOnSelect =(e)=>{
-  const {checked , value} = e.target
+
+
+
+const handleOnSelect =(e)=>{
+  const {checked , value}= e.target
   console.log(checked , value)
   if(value === "all"){
-    console.log("all selected")
-
+    checked ? setIdsToDelete(displayTransaction.map((item)=> item._id)) : setIdsToDelete([])
+    return
   }
+
   if(checked){
     setIdsToDelete([...idsToDelete , value])
-  }else {
-    setIdsToDelete( idsToDelete.filter((id)=>  id!==value))
   }
-   
+  else {
+    setIdsToDelete(idsToDelete.filter((id)=> id !== value))
   }
-  console.log(idsToDelete)
-  
- };
+}
+const handleOnDelete =async()=>{
+  if(confirm(`Are you sure to delete ${idsToDelete.length} transactions?`)){
+     console.log(idsToDelete)
+ 
+}
+{const result = await deleteTransaction(idsToDelete)
+console.log(result)}
 
-  return  
-   (<>
+}
+
+  return ( <div>
    <div className='d-flex justify-content-between pt-2 mb-2'>
     <div>{displayTransaction.length} Transaction found ! </div>
     <div>
@@ -59,7 +72,7 @@ export const TransactionTable = () => {
     </div>
   
   </div>
-  <div><Form.Check label="Select All" onChange={handleOnSelect} value="all"/></div>
+  <div><Form.Check label="Select All" onChange={handleOnSelect} value="all" checked ={idsToDelete.length === displayTransaction.length} /></div>
     <Table striped  hover>
       <thead>
         <tr>
@@ -77,7 +90,7 @@ export const TransactionTable = () => {
             
           </td>
           <td><Form.Check label= {t.createdAt.slice(0,10)
-                  }value ={t._id} onChange={handleOnSelect}/></td>
+                  }value ={t._id} onChange={handleOnSelect} checked={idsToDelete.includes(t._id)} /></td>
           <td>{t.title}</td>
           {
             t.type === "expenses" && <>
@@ -103,7 +116,13 @@ export const TransactionTable = () => {
         </tr>
       </tbody>
     </Table>
-    </>
+   {
+    idsToDelete.length >0 && <div className="d-grid">
+   <Button variant="danger"  onClick={handleOnDelete}> Delete {idsToDelete.length} selected</Button>
+   </div>
+   }
+
+</div>
 )
 
-  
+      };

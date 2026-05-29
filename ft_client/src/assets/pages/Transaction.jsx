@@ -24,7 +24,7 @@ const Transaction = () => {
         </CustomModel >
         <hr />
 
-        <TransactionTa ble />
+        <TransactionTable/>
         </Col>
       </Row>
     </Container>
