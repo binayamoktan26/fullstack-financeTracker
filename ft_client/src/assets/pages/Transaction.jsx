@@ -12,7 +12,7 @@ const Transaction = () => {
   const {getTransaction} = useUser()
   useEffect(()=>{
     getTransaction()
-  },[getTransaction])
+  },[])
   return (
     <Container className="p-5">
       <Row className=" bg-dark p-5 rounded">

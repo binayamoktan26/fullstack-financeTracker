@@ -1,5 +1,4 @@
 import axios from "axios";
-import { data } from "react-router-dom";
 const rootApiEP = "http://localhost:8000/api/v1";
 
 
@@ -94,16 +93,16 @@ export const getUser = () => {
 };
 
 
-export const deleteTransaction=(data)=>{
- 
-    const obj = {
+
+// delete transaction
+export const deleteTransaction = (data)=>{
+const obj = {
     method: "delete",
     url: rootApiEP + "/transactions",
     data,
       headers:{
     Authorization: getAccessJWT(),
-    // Authorization: "Bearer " + getAccessJWT()
-
     }
   };
+  return apiProcessor(obj)
 }
