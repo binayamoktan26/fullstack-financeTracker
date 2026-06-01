@@ -45,7 +45,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6
 ### delete transaction for specific user 
 DELETE http://localhost:8000/api/v1/transactions
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6MTc3OTcwODcwMiwiZXhwIjoxNzgwMzEzNTAyfQ.PlnqeLvDqmUaB7RoV6tdaaKrnMhg0ngHSbF9gFsXNn0
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6MTc4MDMyOTI3NiwiZXhwIjoxNzgwOTM0MDc2fQ.HeDiCY5JPmn46EH1VzaJiM8TYUOdaeslKH1zqziD_rY
 
 
 [

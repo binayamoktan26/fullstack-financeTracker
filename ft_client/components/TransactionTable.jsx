@@ -27,6 +27,7 @@ export const TransactionTable = () => {
   const handleOnSearch = (e) => {
     const { value } = e.target;
     console.log(value);
+    console.log("checkbox value:", e.target.value);
     const filteredAvg = transaction.filter(({ title }) => {
       return title.toLowerCase().includes(value.toLowerCase());
     });
