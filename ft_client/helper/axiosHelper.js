@@ -6,7 +6,7 @@ const getAccessJWT=()=>{
   return localStorage.getItem("accessJWT")
   
 }
-console.log(getAccessJWT())
+
 const apiProcessor = async ({ method, url, data ,headers}) => {
   try {
     const response = await axios({

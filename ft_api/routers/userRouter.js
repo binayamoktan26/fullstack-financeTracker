@@ -4,6 +4,7 @@ import { hashPassword, comparePassword } from "../utils/bcryptjs.js";
 import { signjWT } from "../utils/jwt.js";
 import { auth } from "../middlewares/AuthMiddleware.js";
 
+
 const router = express.Router();
 // user signUp
 router.post("/", async (req, res, next) => {
@@ -23,19 +24,18 @@ router.post("/", async (req, res, next) => {
           message: "Error creating user . Please try again later",
         });
   } catch (error) {
-    let msg = error.message;
-    if (msg.includes("E11000 duplicate key error collection")) {
-      msg =
-        " There is another user have used this email, try to login or use different email to signup ! ";
+   
+    if (error.message.includes("E11000 duplicate key error collection")) {
+      error.message =
+        "There is another user have used this email, try to login or use different email to signup!";
     }
-    res.json({
-      status: "error",
-      message: msg,
-    });
+    error.statusCode =200 ;
+    next(error);
   }
 });
 // user logIN
 router.post("/login", async (req, res, next) => {
+
   try {
     // 1. receive the email and password
     const { email, password } = req.body;
@@ -59,33 +59,28 @@ router.post("/login", async (req, res, next) => {
             accessJWT,
           });
           return;
-        } 
+        }
       }
     }
     res.status(401).json({
       error: "invalid email or password",
     });
   } catch (error) {
-    res.status(500).json({
-      error: error.message,
-    });
+    next(error);
   }
 });
-// userProfile from the accessJWT 
-router.get("/",auth ,(req,res,next)=>{
- try {
-    
+// userProfile from the accessJWT
+router.get("/", auth, (req, res, next) => {
+  try {
     const user = req.userInfo;
-     user.password=undefined
+    user.password = undefined;
     return res.json({
-      status : "success",
-      message : " here is the user profile",
-      user
-    })
- } catch (error) {
-    res.status(500).json({
-      error: error.message,
+      status: "success",
+      message: " here is the user profile",
+      user,
     });
- }
-})
+  } catch (error) {
+    next(error);
+  }
+});
 export default router;

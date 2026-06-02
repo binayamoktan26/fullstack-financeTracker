@@ -8,7 +8,7 @@ import { IoCreate } from "react-icons/io5";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { HiOutlineBanknotes } from "react-icons/hi2";
 import { useUser} from "../../src/context/UserContex"
-import { useContext } from "react"; 
+
 
 export const Header = () => {
  
@@ -19,7 +19,7 @@ const handleOnLogOut = ()=>{
 localStorage.removeItem("accessJWT")
 //reset user object from the state
 setUser({})
-
+console.log(user)
 }
   return (
     <Navbar expand="lg" variant="dark" className="bg-dark">
@@ -29,7 +29,7 @@ setUser({})
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             {
-              user._id? (
+              user?._id? (
                 <>
                  <Link className="nav-link" to="/dashboard">
               <RiDashboard2Fill /> Dashboard

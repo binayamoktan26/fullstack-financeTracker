@@ -3,8 +3,8 @@
 ### user
 ###getUser
 
-GET http://localhost:8000/api/v1/users
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6MTc3ODg2NTExMywiZXhwIjoxNzc5NDY5OTEzfQ.3C8lG-FKB282IjRNtph9gJgCh63bfcELda4CleACV68
+GET http://localhost:8000/api/v1/usersww
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYSIsImlhdCI6MTc4MDM4OTk3NywiZXhwIjoxNzgwOTk0Nzc3fQ.wiy4Q99V9i5JEky5FfJfl-AmkAGg1c5l0_Wo4YmVXnQ
 ###post new user
 ### login user
 POST  http://localhost:8000/api/v1/users/login

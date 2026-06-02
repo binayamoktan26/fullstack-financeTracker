@@ -10,7 +10,7 @@ const router = express.Router();
 
 // post transaction
 
-router.post("/", async (req, res) => {
+router.post("/", async (req, res,next) => {
   try {
     const { _id } = req.userInfo;
     req.body.userId = _id;
@@ -28,17 +28,14 @@ router.post("/", async (req, res) => {
           message: " unable to add new transaction , try again later ",
         });
   } catch (error) {
-    console.log(error);
-    res.json({
-      status: "error",
-      message: "error.message",
-    });
+   next(error);
+   
   }
 });
 
 // return all the transaction for the specfic user
 
-router.get("/", auth, async (req, res) => {
+router.get("/", auth, async (req, res,next) => {
   try {
     const { _id } = req.userInfo;
     const transaction = (await getTransaction(_id)) || [];
@@ -50,16 +47,13 @@ router.get("/", auth, async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.json({
-      status: "error",
-      message: "error.message",
-    });
+   next(error);
   }
 });
 
 // delete transaction
 
-router.delete("/", async (req, res) => {
+router.delete("/", async (req, res,next) => {
   try {
     // receive the ids [] and _id of user
     const ids = req.body;
@@ -77,11 +71,8 @@ router.delete("/", async (req, res) => {
   message: result.deletedCount + " Transaction deleted successfully",
 });
   } catch (error) {
-    console.log(error);
-    res.json({
-      status: "error",
-      message: "error.message",
-    });
+   
+   next(error);
   }
 });
 
