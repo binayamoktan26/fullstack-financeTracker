@@ -11,9 +11,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 export const LogInForm = () => {
 
-
   const location = useLocation()
-  console.log(location)
+
   const goTo = location?.state?.from?.pathname || "/dashboard"
 
   const navigate = useNavigate()
@@ -48,13 +47,13 @@ export const LogInForm = () => {
 
   // const handleOnChange = (e) => {
   //   const { name, value } = e.target;
-  //   // console.log(name, value);
+
   //   setForm({ ...form, [name]: value });
   // };
   const handleOnSubmit = async (e) => {
-    // console.log(e);
+
     e.preventDefault();
-    console.log(form);
+
     const pendingRes = loginUser(form);
     toast.promise(pendingRes, {
       pending: "Please wait ....", 
@@ -62,8 +61,9 @@ export const LogInForm = () => {
     }); 
     const { status, message, user, accessJWT } = await pendingRes;
     toast[status](message);
-    console.log(user, accessJWT);
+
     setUser(user)
+
     localStorage.setItem("accessJWT",accessJWT)
     // localStorage.setItem("userinfo",JSON.stringify (user))
 

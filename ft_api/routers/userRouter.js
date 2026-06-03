@@ -11,7 +11,7 @@ router.post("/", async (req, res, next) => {
   try {
     // get the use Object
     req.body.password = hashPassword(req.body.password);
-    console.log(req.body.password);
+  
     // // data varification encrypt the password
     const user = await insertUser(req.body);
     user?._id
@@ -39,7 +39,7 @@ router.post("/login", async (req, res, next) => {
   try {
     // 1. receive the email and password
     const { email, password } = req.body;
-    console.log(email, password);
+
     if (email && password) {
       // 2. find the user by email
       const user = await getUserByEmail(email);

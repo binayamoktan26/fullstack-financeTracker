@@ -17,7 +17,7 @@ export const TransactionTable = () => {
     setDisplayTransaction(transaction);
   }, [transaction]);
   useEffect(() => {
-    console.log("Selected IDs:", idsToDelete);
+  
   }, [idsToDelete]);
 
   const balance = displayTransaction.reduce((acc, t) => {
@@ -26,18 +26,17 @@ export const TransactionTable = () => {
 
   const handleOnSearch = (e) => {
     const { value } = e.target;
-    console.log(value);
-    console.log("checkbox value:", e.target.value);
+  
     const filteredAvg = transaction.filter(({ title }) => {
       return title.toLowerCase().includes(value.toLowerCase());
     });
-    console.log(filteredAvg);
+
     setDisplayTransaction(filteredAvg);
   };
 
   const handleOnSelect = (e) => {
     const { checked, value } = e.target;
-    console.log(checked, value);
+
     if (value === "all") {
       checked
         ? setIdsToDelete(displayTransaction.map((item) => item._id))
@@ -53,14 +52,14 @@ export const TransactionTable = () => {
   };
   const handleOnDelete = async () => {
     if (confirm(`Are you sure to delete ${idsToDelete.length} transactions?`)) {
-      console.log(idsToDelete);
+
       // const {status , message} = await deleteTransaction(idsToDelete);
       const pending = deleteTransaction(idsToDelete);
       toast.promise(pending, {
         pending: "please wait",
       });
       const { status, message } = await pending;
-      // console.log(status , message);
+
       toast[status](message);
       status === "success" && getTransaction() && setIdsToDelete([])
     }

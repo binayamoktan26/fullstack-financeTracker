@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 8000;
 import { conMongoDb } from "./config/mongodbConfig.js";
 import { errorHandler } from "./middlewares/errorHandlerMiddleware.js";
 conMongoDb();
-// console.log(process.env.JWT_SECRET);
+
 // middleware
 app.use(cors());
 app.use(express.json());

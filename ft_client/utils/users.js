@@ -15,8 +15,7 @@ const  accessJWT = localStorage.getItem("accessJWT");
 
 //     //call api to get user
 // const {status , user} = await getUser()
-// //  console.log(response)
-//  
+
 
 //     //mount user in the state
 }

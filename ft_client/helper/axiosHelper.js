@@ -1,5 +1,5 @@
 import axios from "axios";
-const rootApiEP = "http://localhost:8000/api/v1";
+const rootApiEP = import.meta.env.VITE_ROOT_API + "/api/v1";
 
 
 const getAccessJWT=()=>{
@@ -18,7 +18,7 @@ const apiProcessor = async ({ method, url, data ,headers}) => {
 
     return response.data;
   } catch (error) {
-    console.log(error); 
+
     return {
       status: "error",
       message: error?.response?.data?.error || error.message,

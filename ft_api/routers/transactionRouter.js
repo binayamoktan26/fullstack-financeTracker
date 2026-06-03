@@ -14,10 +14,9 @@ router.post("/", async (req, res,next) => {
   try {
     const { _id } = req.userInfo;
     req.body.userId = _id;
-    // console.log(req.body)
+   
     const result = await insertTransaction(req.body);
-    // console.log(result)
-    console.log(result);
+
     result?._id
       ? res.json({
           status: "success",
@@ -46,7 +45,7 @@ router.get("/", auth, async (req, res,next) => {
       transaction,
     });
   } catch (error) {
-    console.log(error);
+  
    next(error);
   }
 });
@@ -58,7 +57,7 @@ router.delete("/", async (req, res,next) => {
     // receive the ids [] and _id of user
     const ids = req.body;
     const { _id } = req.userInfo;
-    console.log(ids, _id);
+  
 
     //perform deletion query
     const result = await deleteTransaction(_id, ids);
