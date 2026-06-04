@@ -2,11 +2,11 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { LogInForm } from "../../../components/LogInForm";
+import { LogInForm } from "../../components/LogInForm";
 
 import { BsGraphDownArrow } from "react-icons/bs";
 import { BsGraphUpArrow } from "react-icons/bs";
-import { useUser } from "../../context/UserContex";
+// import { useUser } from "../context/UserContex";
 const Login = () => {
 //   const data = useUser()
 // console.table(data)

@@ -2,11 +2,11 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { TransactionForm } from "../../../components/TransactionForm";
-import { TransactionTable } from "../../../components/TransactionTable";
-import { useUser } from "../../context/UserContex";
+import { TransactionForm } from "../../components/TransactionForm";
+import { TransactionTable } from "../../components/TransactionTable";
+import { useUser } from "../context/UserContex";
 import { useEffect } from "react";
-import { CustomModel } from "../../../components/CustomModel";
+import { CustomModel } from "../../components/CustomModel";
 
 const Transaction = () => {
   const {getTransaction} = useUser()
