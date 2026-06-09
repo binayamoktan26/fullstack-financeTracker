@@ -10,6 +10,8 @@ export const UserProvider = ({ children }) => {
 
   const toggleModal = (value) => setShow(value);
   //   const handleShow = () => setShow(true);
+
+  
   const getTransaction = async () => {
     // call the axios helper to call api
 
