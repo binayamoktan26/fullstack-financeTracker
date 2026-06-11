@@ -1,42 +1,42 @@
 const aggregateData = (transaction) => {
-  const result = { income: {}, expense: {} };
- transaction.forEach((transation) => {
-  const date = transation.tDate.split("T")[0];
+  const result = { income: {}, expenses: {} };
+  transaction.forEach((transaction) => {
+    const date = transaction.tdate.split("T")[0];
     if (transaction.type === "income") {
       result.income[date] = (result.income[date] || 0) + transaction.amount;
-    } else if (transaction.type === "expense") {
-     result.expense[date] =
-  (result.expense[date] || 0) + transaction.ammount;
+    } else if (transaction.type === "expenses") {
+      result.expenses[date] = (result.expenses[date] || 0) + transaction.amount;
     }
   });
-  return result
+  return result;
 };
 // Prepare data for the chart
 const prepareChartData = (aggregatedData) => {
-  const labels = Object.keys(aggregatedData.income) .concat(Object.keys(aggregatedData.expense))
+  const labels = Object.keys(aggregatedData.income)
+    .concat(Object.keys(aggregatedData.expenses))
     .filter((value, index, self) => self.indexOf(value) === index);
   const incomeData = labels.map((label) => aggregatedData.income[label] || 0);
   const expenseData = labels.map(
-    (label) => aggregatedData.expense[label] || 0
+    (label) => aggregatedData.expenses[label] || 0,
   );
 
   return { labels, incomeData, expenseData };
 };
 
 export const formatChartData = (transactionData) => {
-  transactionData.sort((a, b) => new Date(a.tDate) - new Date(b.tDate));
+  transactionData.sort((a, b) => new Date(a.tdate) - new Date(b.tdate));
 
   const incomeRecord = transactionData
     .filter((record) => record.type == "income")
     .map((record) => ({
-      date: record.tDate.split("T")[0],
+      date: record.tdate.split("T")[0],
       amount: record.amount,
     }));
 
   const expenseRecord = transactionData
-    .filter((record) => record.type == "expense")
+    .filter((record) => record.type == "expenses")
     .map((record) => ({
-      date: record.tDate.split("T")[0],
+      date: record.tdate.split("T")[0],
       amount: record.amount,
     }));
 
@@ -61,7 +61,7 @@ export const formatChartData = (transactionData) => {
     balance: {
       amount: income.amount + expense.amount,
       chartData: {
-        labels: ["Income", "Expense"],
+        labels: ["Income", "Expenses"],
         datasets: [
           {
             label: "Amount",
@@ -108,7 +108,7 @@ export const formatChartData = (transactionData) => {
         },
       },
     },
-    expense: {
+    expenses: {
       amount: expense.amount,
       lineData: {
         labels: expense.label,
@@ -156,7 +156,7 @@ export const formatChartData = (transactionData) => {
           },
           {
             label: "Expense",
-            data: combinedData.expensesData,
+            data: combinedData.expenseData,
             borderColor: expense.color,
             backgroundColor: expense.color + "99",
             tension: 0.2,

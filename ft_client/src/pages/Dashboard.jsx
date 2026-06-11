@@ -10,8 +10,9 @@ const Dashboard = () => {
   useEffect(()=>{
     getTransaction()
   },[])
+  
   return (
-    <Container className="p-5">
+    <Container className="p-2 mt-2 mb-2">
       <Row className=" bg-dark p-5 rounded">
         <Col md={6}>
           <h2>DashBoard</h2>

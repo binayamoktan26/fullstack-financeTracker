@@ -20,10 +20,11 @@ export const DashboardChart = () => {
   }, [transaction]);
   return (
     <>
-      <Row>
+     <Row>
         <Col md={12}>
+     
           <Row className="">
-            <Col md={4}>
+            <Col md={4} xs={12} >
               <CustomKPI
                 bgColor="warning"
                 iconSrc={balanceIcon}
@@ -31,7 +32,7 @@ export const DashboardChart = () => {
                 kpiValue={dashboardData.balance.amount}
               />
             </Col>
-            <Col md={4}>
+            <Col md={4} xs={12}  >
               <CustomKPI
                 bgColor="success"
                 iconSrc={incomeIcon}
@@ -39,24 +40,26 @@ export const DashboardChart = () => {
                 kpiValue={dashboardData.income.amount}
               />
             </Col>
-            <Col md={4}>
+            <Col md={4} xs={12}  >
               <CustomKPI
                 bgColor="danger"
                 iconSrc={expenseIcon}
                 kpiType="Expense"
-                kpiValue={dashboardData.expense.amount}
+                kpiValue={dashboardData.expenses.amount}
               />
             </Col>
           </Row>
-          <Row className="mt-2">
+          <Row className="mt-2 mb-2 ">
             <Col
-              md={4}
-              className="bg-dark  p-2 d-flex align-items-center justify-content-center"
+              md={4} 
+              
+              className="bg-dark   p-2 d-flex align-items-center justify-content-center"
             >
               <DoughnutChart data={dashboardData.balance.chartData} />
             </Col>
             <Col
-              md={4}
+              md={4} 
+              
               className="bg-dark  p-2 d-flex align-items-center justify-content-center"
             >
               <LineChart
@@ -65,17 +68,18 @@ export const DashboardChart = () => {
               />
             </Col>
             <Col
-              md={4}
+              md={4} 
+              
               className="bg-dark  p-2 d-flex align-items-center justify-content-center"
             >
               <LineChart
-                data={dashboardData.expense.lineData}
-                options={dashboardData.expense.options}
+                data={dashboardData.expenses.lineData}
+                options={dashboardData.expenses.options}
               />
             </Col>
           </Row>
           <Row>
-            <Col className="bg-dark rounded p-4">
+            <Col md={12} xs={12} lg={12} className="bg-white  rounded p-4 m-3">
               <BarChart
                 data={dashboardData.combined.data}
                 options={dashboardData.combined.options}
@@ -83,7 +87,8 @@ export const DashboardChart = () => {
             </Col>
           </Row>
         </Col>
-      </Row>
+        </Row>
+      
     </>
   );
 };

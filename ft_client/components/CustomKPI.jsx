@@ -1,9 +1,11 @@
 import React from "react";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
-export const CustomKPI = ({iconSrc , kpiType , kpiValue , bgColor="white"}) => {
+export const CustomKPI = ({iconSrc , kpiType , kpiValue ,bgColor}) => {
   return (
     <>
-      <Row className={"bg-" + bgColor + "rounded text-black  p-3 g-2"}>
+      <Row className={"bg-" + bgColor + " rounded text-black p-3 g-2"}>
         <Col md={4}>
          <img className="img-fluid"  src={iconSrc} alt={kpiType}/>
         
