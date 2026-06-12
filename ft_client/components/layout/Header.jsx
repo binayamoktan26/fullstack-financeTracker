@@ -54,7 +54,7 @@ export const Header = () => {
                   <HiOutlineBanknotes /> Transction
                 </Link>
                 <Link
-                  onClick={() => setShowMenu(false)}
+                  // onClick={() => setShowMenu(false)}
                   onClick={handleOnLogOut} 
                   className="nav-link"
                   to="/"
