@@ -2,10 +2,11 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { CustomInput } from "./CustomInput";
-// import { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { postNewUser } from "../helper/axiosHelper";
 import useForm from "../src/hooks/useForm";
+
 const initalState = {
   name: "",
   email: "",
@@ -15,6 +16,7 @@ const initalState = {
 
 export const SignUpForm = () => {
   const { form, setForm, handleOnChange } = useForm(initalState);
+  const [isLoading, setIsLoading] = useState(false)
   // const [form, setForm] = useState({});
   const fields = [
     {
@@ -59,16 +61,18 @@ export const SignUpForm = () => {
   const handleOnSubmit = async (e) => {
     // console.log(e);
     e.preventDefault();
-   
+   if(isLoading) return
     // check confirm password
     const { confirmPassword, ...rest } = form;
     if (confirmPassword !== rest.password) {
       return toast.error("Password and confirm password do not match");
     }
+    setIsLoading(true)
     console.log(form);
     const { status, message } = await postNewUser(rest);
     toast[status](message);
     status === "success" && setForm(initalState);
+    setIsLoading(false)
   };
   return (
     <div className="border rounded p-4">
@@ -80,8 +84,8 @@ export const SignUpForm = () => {
 
         <div className="d-grid">
           {" "}
-          <Button variant="primary" type="submit" onClick={handleOnSubmit}>
-            Submit
+          <Button variant="primary" type="submit" onClick={handleOnSubmit} disabled={isLoading}>
+        {isLoading ? "Submitting ...." : "Submit"}
           </Button>
         </div>
       </Form>
